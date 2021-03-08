@@ -1,4 +1,4 @@
-const baseURL = "http://flip3.engr.oregonstate.edu:8666/";
+const baseURL = "https://clinic-serverside.herokuapp.com/52425/";
 
 document.getElementById('add-doctor-submit').addEventListener('click', function (event) {
     var req = new XMLHttpRequest();
