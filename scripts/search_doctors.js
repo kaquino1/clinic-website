@@ -1,4 +1,4 @@
-const baseURL = "https://clinic-serverside.herokuapp.com";
+const baseURL = "https://clinic-serverside.herokuapp.com/";
 
 function makeTable(rowsArray) {
     var columns = ['Doctor Employee ID', 'First Name', 'Last Name', 'Specialty', 'Update', 'Delete']
