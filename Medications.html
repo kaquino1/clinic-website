@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a Medication</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+
+</head>
+
+<body>
+    <div class="header">
+        <span>ADD A MEDICATION</span>
+    </div>
+    <div class="topnav">
+        <a href=index.html><i class="fas fa-home"></i></a>
+        <div class="dropdown">
+            <button class="dropbtn activePage">
+                <i class="fas fa-pills"></i>
+                Medications
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href=Medications.html class="activePage">Add a Medication</a>
+                <a href=allMedications.html>Search Medications</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">
+                <i class="fas fa-user-injured"></i>
+                Patients
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href=Patients.html>Add a Patient</a>
+                <a href=allPatients.html>Search Patients</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">
+                <i class="fas fa-stethoscope"></i>
+                Doctors
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="Doctors.html">Add a Doctor</a>
+                <a href=allDoctors.html>Search Doctors</a>
+                <a href="doctor_patient_assignments.html">Doctor-Patient Assignments</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">
+                <i class="fas fa-notes-medical"></i>
+                Insurances
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href=Insurances.html>Add an Insurance Plan</a>
+                <a href=allInsurances.html>Search Insurance Plans</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">
+                <i class="fas fa-prescription-bottle"></i>
+                Prescriptions
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="write_prescription.html">Write a Prescription</a>
+                <a href=prescription_search.html>Search a Prescription</a>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <div>
+        <form method="POST">
+            <fieldset class="outer">
+                <legend>Add a Medication</legend>
+
+                <fieldset>
+                    <label><span class="required">*</span>Medication Name:
+                        <input type="text" name="medName" id="addMedName">
+                    </label>
+                    <label><span class="required">*</span>Quantity Available:
+                        <input type="number" name="quantityAvailable" min="1" id="addQuantity">
+                    </label>
+                </fieldset>
+
+                <br>
+                <input class="btn" type="submit" id="addSubmit" value="Add Medication">
+            </fieldset>
+        </form>
+    </div>
+
+    <script src="./scripts/medications.js"></script>
+
+</body>
+
+</html>

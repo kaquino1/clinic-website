@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write a Prescription</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+
+</head>
+
+<body>
+    <div class="header">
+        <span>WRITE A PRESCRIPTION</span>
+    </div>
+    <div class="topnav">
+        <a href=index.html><i class="fas fa-home"></i></a>
+        <div class="dropdown">
+            <button class="dropbtn">
+                <i class="fas fa-pills"></i>
+                Medications
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href=Medications.html>Add a Medication</a>
+                <a href=allMedications.html>Search Medications</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">
+                <i class="fas fa-user-injured"></i>
+                Patients
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href=Patients.html>Add a Patient</a>
+                <a href=allPatients.html>Search Patients</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">
+                <i class="fas fa-stethoscope"></i>
+                Doctors
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="Doctors.html">Add a Doctor</a>
+                <a href=allDoctors.html>Search Doctors</a>
+                <a href="doctor_patient_assignments.html">Doctor-Patient Assignments</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">
+                <i class="fas fa-notes-medical"></i>
+                Insurances
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href=Insurances.html>Add an Insurance Plan</a>
+                <a href=allInsurances.html>Search Insurance Plans</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn activePage">
+                <i class="fas fa-prescription-bottle"></i>
+                Prescriptions
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="write_prescription.html" class="activePage">Write a Prescription</a>
+                <a href=prescription_search.html>Search a Prescription</a>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <div>
+        <form method="post">
+            <fieldset class="outer">
+                <legend>Write Prescription</legend>
+                <fieldset>
+                    <legend>Prescribing Doctor Information</legend>
+                    <label>
+                        <span class="required">*</span>Name:
+                        <select name="doctorName" id="prescribeDoctor">
+                            <option value="">--SELECT--</option>
+                        </select>
+                    </label>
+                </fieldset>
+
+                <br>
+
+                <fieldset>
+                    <legend>Patient Information</legend>
+                    <label>
+                        <span class="required">*</span>Patient:
+                        <select name="patientName" id="prescribePatient">
+                            <option value="">--SELECT--</option>
+                        </select>
+                    </label>
+                </fieldset>
+
+                <br>
+
+                <fieldset>
+                    <legend>Medication Information</legend>
+                    <label>
+                        <span class="required">*</span>Medication:
+                        <select name="medicationName" id="prescribeMedication">
+                            <option value="">--SELECT--</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span class="required">*</span>Quantity of Tablets:
+                        <input id="quantityOfTablets" type="number" name="" required>
+                    </label>
+                </fieldset>
+
+                <br>
+
+                <input class="btn" id="addPrescriptionSubmit" type="submit" value="Write Prescription">
+
+            </fieldset>
+        </form>
+    </div>
+    <script src="./scripts/add_prescription.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+body {
+    font-family: Helvetica, sans-serif, sans-serif;
+    margin: 0;
+}
+
+.header {
+    padding: 20px;
+    text-align: center;
+    background: #CA2A0C;
+    color: #f9f9f9;
+    font-size: 30px;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #1D2128;
+    margin-bottom: 10px;
+}
+
+.topnav a {
+    float: left;
+    font-size: 16px;
+    color: #f9f9f9;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;  
+    border: none;
+    outline: none;
+    color: #f9f9f9;
+    padding: 14px 16px;
+    background-color: #1D2128;
+    margin: 0;
+}
+
+.topnav a.activePage,  .topnav a:hover {
+    color: #0CACCA;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #dddddd;
+    color: #1D2128;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.intro {
+    margin: 16px;
+}
+
+.intro span {
+    font-size: 30px;
+}
+
+.intro a, intro a:visited, p a {
+    color: #CA2A0C;
+}
+
+.intro a:hover, p a:hover {
+    color: #0CACCA;
+}
+
+.dropbtn.activePage {
+    color: #0CACCA;
+}
+
+dd {
+    margin-bottom: 10px;;
+}
+
+.required {
+    color: #CA2A0C;
+}
+
+table {
+    border-collapse: collapse;
+}
+        
+td, th {
+    text-align: center;
+    padding: 8px;
+}
+
+th {
+    background-color: #CA2A0C;
+    color: #f9f9f9;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+input, select, .btn{
+    margin: 5px 30px 5px 0px;
+}
+
+.btn, .deleteBtns, .updateBtns, button[name="update"], button[name="delete"], button[name="unassign"] {
+    background-color: white;
+    color: black;
+    border: 2px solid #CA2A0C;
+    padding: 5px 10px;
+    transition-duration: 0.4s;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.deleteBtns:hover, .updateBtns:hover, .btn:hover, button[name="update"]:hover, button[name="delete"]:hover, button[name="unassign"]:hover {
+    border: 2px solid #CA2A0C;
+    background-color: #CA2A0C;
+    color: white;
+}
+
+.radiobtn {
+    margin-right: 0px;
+    margin-left: 15px;
+}
+
+.hide {
+    display: none;
+}
+
+div form {
+    max-width: 70%;
+    margin: 0 auto;
+}
+
+fieldset {
+    border-radius: 8px;
+    padding: 10px 12px 10px;
+}
+
+
+.outer {
+    padding: 20px;
+}
+
+div table {
+    margin: 0 auto;
+}
+
+#noResults {
+    text-align: center;
+}
