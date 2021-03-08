@@ -3,7 +3,7 @@ const mysql = require("./dbcon.js");
 const CORS = require("cors");
 
 const app = express();
-app.set("port", 8666);
+app.set("port", process.env.PORT || 5000;);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(CORS());
