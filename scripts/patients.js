@@ -1,4 +1,4 @@
-const baseURL = "https://clinic-serverside.herokuapp.com/52425/";
+const baseURL = "https://clinic-serverside.herokuapp.com";
 
 // ADD PATIENT
 document.getElementById("addSubmit").addEventListener("click", (event) => {
