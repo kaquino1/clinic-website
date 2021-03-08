@@ -30,7 +30,6 @@ const sendData = (data) => {
             getData();
             // HIDE UPDATE FORM
             document.getElementById("updatePatient").classList.add("hide");
-            document.getElementById("noResults").classList.remove("hide");
         }
         else {
             console.log("Error in network request" + req.statusText);
@@ -60,6 +59,8 @@ const getData = () => {
     req.open("GET", baseURL + "patients", false);
     req.send(null);
     var tableData = JSON.parse(req.responseText);
+    document.getElementById("noResults").classList.add("hide");
+
     makeTable(tableData);
 };
 
