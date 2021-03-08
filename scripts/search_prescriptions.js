@@ -1,4 +1,4 @@
-const baseURL = "http://flip3.engr.oregonstate.edu:8666/";
+const baseURL = "https://clinic-serverside.herokuapp.com/52425/";
 
 function makeTable(rowsArray){
     var columns = ['Prescription ID', 'Employee ID', 'Doctor FN', 'Doctor LN', 'Medication ID', 'Medication Name', 'Quantity Prescribed', 'Patient Record #', 'Patient FN', 'Patient LN']
