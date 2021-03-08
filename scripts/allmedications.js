@@ -1,4 +1,4 @@
-const baseURL = "https://clinic-serverside.herokuapp.com/52425/";
+const baseURL = "https://clinic-serverside.herokuapp.com";
 
 const table = document.getElementById("medicationTable");
 
