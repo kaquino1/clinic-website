@@ -99,6 +99,7 @@ document.getElementById("searchSubmit").addEventListener("click", (event) => {
         if (req.status >= 200 && req.status < 400) {
             // RESET SEARCH FORM
             resetSearchForm();
+            document.getElementById("noResults").classList.add("hide");
             makeTable(JSON.parse(req.responseText));
             document.getElementById("insurancesContainer").scrollIntoView();
         }
