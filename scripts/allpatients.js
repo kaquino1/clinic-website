@@ -59,8 +59,6 @@ const getData = () => {
     req.open("GET", baseURL + "patients", false);
     req.send(null);
     var tableData = JSON.parse(req.responseText);
-    document.getElementById("noResults").classList.add("hide");
-
     makeTable(tableData);
 };
 
@@ -283,6 +281,7 @@ document.getElementById("searchSubmit").addEventListener("click", (event) => {
         if (req.status >= 200 && req.status < 400) {
             // RESET SEARCH FORM
             resetSearchForm();
+            document.getElementById("noResults").classList.add("hide");
             makeTable(JSON.parse(req.responseText));
             document.getElementById("patientsContainer").scrollIntoView();
         }
