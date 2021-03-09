@@ -47,7 +47,7 @@ body {
 }
 
 .topnav a.activePage,  .topnav a:hover {
-    color: #FF3A20;
+    color: #9C0D38;
 }
 
 .dropdown-content {
@@ -78,7 +78,7 @@ body {
 }
 
 .dropbtn.activePage {
-    color: #FF3A20;
+    color: #9C0D38;
 }
 
 
@@ -96,7 +96,7 @@ body {
 }
 
 .intro a:hover, p a:hover {
-    color: #FF3A20;
+    color: #9C0D38;
 }
 
 dd {
@@ -130,7 +130,7 @@ div table {
 
 /* FORMS */
 .required {
-    color: #FF3A20;
+    color: #9C0D38;
 }
 
 input, select, .btn{
