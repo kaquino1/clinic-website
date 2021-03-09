@@ -11,6 +11,11 @@ body {
     font-size: 30px;
 }
 
+#noResults {
+    text-align: center;
+}
+
+/* NAVBAR */
 .topnav {
     overflow: hidden;
     background-color: #1D2128;
@@ -72,6 +77,12 @@ body {
     display: block;
 }
 
+.dropbtn.activePage {
+    color: #0CACCA;
+}
+
+
+/* HOMEPAGE */
 .intro {
     margin: 16px;
 }
@@ -88,18 +99,12 @@ body {
     color: #0CACCA;
 }
 
-.dropbtn.activePage {
-    color: #0CACCA;
-}
-
 dd {
     margin-bottom: 10px;;
 }
 
-.required {
-    color: #CA2A0C;
-}
 
+/* TABLES */
 table {
     border-collapse: collapse;
 }
@@ -118,24 +123,27 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 
+div table {
+    margin: 0 auto;
+}
+
+
+/* FORMS */
+.required {
+    color: #CA2A0C;
+}
+
 input, select, .btn{
     margin: 5px 30px 5px 0px;
 }
 
-.btn, .deleteBtns, .updateBtns, button[name="update"], button[name="delete"], button[name="unassign"] {
-    background-color: white;
-    color: black;
-    border: 2px solid #CA2A0C;
-    padding: 5px 10px;
-    transition-duration: 0.4s;
+fieldset {
     border-radius: 8px;
-    font-size: 14px;
+    padding: 10px 12px 10px;
 }
 
-.deleteBtns:hover, .updateBtns:hover, .btn:hover, button[name="update"]:hover, button[name="delete"]:hover, button[name="unassign"]:hover {
-    border: 2px solid #CA2A0C;
-    background-color: #CA2A0C;
-    color: white;
+.outer {
+    padding: 20px;
 }
 
 .radiobtn {
@@ -152,20 +160,20 @@ div form {
     margin: 0 auto;
 }
 
-fieldset {
+
+/* BUTTONS */
+.btn, .deleteBtns, .updateBtns, button[name="update"], button[name="delete"], button[name="unassign"] {
+    background-color: white;
+    color: black;
+    border: 2px solid #CA2A0C;
+    padding: 5px 10px;
+    transition-duration: 0.4s;
     border-radius: 8px;
-    padding: 10px 12px 10px;
+    font-size: 14px;
 }
 
-
-.outer {
-    padding: 20px;
-}
-
-div table {
-    margin: 0 auto;
-}
-
-#noResults {
-    text-align: center;
+.deleteBtns:hover, .updateBtns:hover, .btn:hover, button[name="update"]:hover, button[name="delete"]:hover, button[name="unassign"]:hover {
+    border: 2px solid #CA2A0C;
+    background-color: #CA2A0C;
+    color: white;
 }
