@@ -6,7 +6,7 @@ body {
 .header {
     padding: 20px;
     text-align: center;
-    background: #CA2A0C;
+    background: #0081AF;
     color: #f9f9f9;
     font-size: 30px;
 }
@@ -47,7 +47,7 @@ body {
 }
 
 .topnav a.activePage,  .topnav a:hover {
-    color: #0CACCA;
+    color: #F58549;
 }
 
 .dropdown-content {
@@ -78,7 +78,7 @@ body {
 }
 
 .dropbtn.activePage {
-    color: #0CACCA;
+    color: #F58549;
 }
 
 
@@ -92,11 +92,11 @@ body {
 }
 
 .intro a, intro a:visited, p a {
-    color: #CA2A0C;
+    color: #0081AF;
 }
 
 .intro a:hover, p a:hover {
-    color: #0CACCA;
+    color: #F58549;
 }
 
 dd {
@@ -115,7 +115,7 @@ td, th {
 }
 
 th {
-    background-color: #CA2A0C;
+    background-color: #0081AF;
     color: #f9f9f9;
 }
 
@@ -130,7 +130,7 @@ div table {
 
 /* FORMS */
 .required {
-    color: #CA2A0C;
+    color: #0081AF;
 }
 
 input, select, .btn{
@@ -165,7 +165,7 @@ div form {
 .btn, .deleteBtns, .updateBtns, button[name="update"], button[name="delete"], button[name="unassign"] {
     background-color: white;
     color: black;
-    border: 2px solid #CA2A0C;
+    border: 2px solid #0081AF;
     padding: 5px 10px;
     transition-duration: 0.4s;
     border-radius: 8px;
@@ -173,7 +173,7 @@ div form {
 }
 
 .deleteBtns:hover, .updateBtns:hover, .btn:hover, button[name="update"]:hover, button[name="delete"]:hover, button[name="unassign"]:hover {
-    border: 2px solid #CA2A0C;
-    background-color: #CA2A0C;
+    border: 2px solid #0081AF;
+    background-color: #0081AF;
     color: white;
 }
