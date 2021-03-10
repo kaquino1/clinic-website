@@ -15,7 +15,9 @@ table.addEventListener("click", (event) => {
     if (event.target && event.target.matches("button.updateBtns")) {
         var row = event.target.closest("tr");
         var oldData = collectRowData(row);
-        console.log(oldData);
+        if (confirm("Restocking this medication will add 50 more units")) {
+            restockMedication(oldData)
+        };
     }
     event.preventDefault();
 });
@@ -27,6 +29,26 @@ const collectRowData = (row) => {
         oldData.push(cells.item(i).innerHTML);
     }
     return (oldData);
+};
+
+const restockMedication = (oldData) => {
+    var data = { medID: null, medName: null, quantityAvailable: null }
+    data.medID = oldData[0];
+    data.medName = oldData[1];
+    data.quantityAvailable = 50 + parseInt(oldData[2]);
+
+    var req = new XMLHttpRequest();
+    req.open("PUT", baseURL + "medications", true);
+    req.setRequestHeader("Content-Type", "application/json");
+    req.addEventListener("load", () => {
+        if (req.status >= 200 && req.status < 400) {
+            getData();
+        }
+        else {
+            console.log("Error in network request" + req.statusText);
+        }
+    })
+    req.send(JSON.stringify(data));
 };
 
 const deleteRow = (toDelete) => {
