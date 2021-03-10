@@ -23,7 +23,7 @@ table.addEventListener("click", (event) => {
 const collectRowData = (row) => {
     var cells = row.cells;
     var oldData = [];
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < 3; i++) {
         oldData.push(cells.item(i).innerHTML);
     }
     return (oldData);
