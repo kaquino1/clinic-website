@@ -78,9 +78,12 @@ document.getElementById('searchPrescriptionSubmit').addEventListener('click', fu
     req.setRequestHeader('Content-Type', 'application/json');
     req.addEventListener('load', function(){
         if(req.status >= 200 && req.status < 400){
-            var response;
-            var response = JSON.parse(req.responseText)
-            var databaseRowsArray = response.results
+            var response = JSON.parse(req.responseText);
+            var databaseRowsArray = response.results;
+            document.getElementById('searchDoctor').value = "";
+            document.getElementById('searchPatient').value = "";
+            document.getElementById('searchMedication').value = "";
+            
             makeTable(databaseRowsArray)
         } else{
             console.log("Error in network request: " + req.statusText);
