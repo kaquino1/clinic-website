@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Doctors</title>
+    <title>Write a Prescription</title>
     <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
     <!-- Font Awesome -->
@@ -14,7 +14,7 @@
 
 <body>
     <div class="header">
-        <span>SEARCH DOCTORS</span>
+        <span>WRITE A PRESCRIPTION</span>
     </div>
     <div class="topnav">
         <a href=index.html><i class="fas fa-home"></i></a>
@@ -41,14 +41,14 @@
             </div>
         </div>
         <div class="dropdown">
-            <button class="dropbtn activePage">
+            <button class="dropbtn">
                 <i class="fas fa-stethoscope"></i>
                 Doctors
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
                 <a href="Doctors.html">Add a Doctor</a>
-                <a href=search_doctors.html class="activePage">Search Doctors</a>
+                <a href=search_doctors.html>Search Doctors</a>
                 <a href="doctor_patient_assignments.html">Doctor-Patient Assignments</a>
             </div>
         </div>
@@ -64,13 +64,13 @@
             </div>
         </div>
         <div class="dropdown">
-            <button class="dropbtn">
+            <button class="dropbtn activePage">
                 <i class="fas fa-prescription-bottle"></i>
                 Prescriptions
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a href="Prescriptions.html">Write a Prescription</a>
+                <a href="Prescriptions.html" class="activePage">Write a Prescription</a>
                 <a href=search_prescriptions.html>Search a Prescription</a>
             </div>
         </div>
@@ -81,77 +81,49 @@
     <div>
         <form method="post">
             <fieldset class="outer">
-
-                <legend>Doctor Search</legend>
+                <legend>Write Prescription</legend>
                 <fieldset>
-                    <label>First Name:
-                        <input id="firstName" type="text" name="firstName">
-                    </label>
-                    <label>Last Name:
-                        <input id="lastName" type="text" name="lastName">
-                    </label>
-                </fieldset>
-
-                <br>
-                <fieldset>
-                    <label>Specialty:
-                        <input id="specialty" type="text" name="specialty">
-                    </label>
-                </fieldset>
-
-
-                <br>
-
-                <input class="btn" id="searchDoctor" type="submit" value="Search">
-                <button class="btn" id="showAll">Show All</button>
-            </fieldset>
-        </form>
-    </div>
-
-    <br>
-    <div class="hide" id="noResults">
-        <span>
-            <h2>No Results</h2>
-        </span>
-    </div>
-
-    <br>
-    <div id="doctorsContainer">
-        <table id="all-doctors-table">
-
-        </table>
-    </div>
-    <br>
-    <br>
-
-    <div id="updateDoctor" class="hide">
-        <form method="PUT">
-            <fieldset>
-                <legend>Update Doctor</legend>
-                <fieldset>
-                    <input type="hidden" name="employeeID" id="updateEmployeeID">
+                    <legend>Prescribing Doctor Information</legend>
                     <label>
-                        <label><span class="required">*</span>First Name:
-                            <input type="text" name="firstName" id="updateFirstName">
-                        </label>
-                        <label>
-                            <label><span class="required">*</span>Last Name:
-                                <input type="text" name="lastName" id="updateLastName">
-                            </label>
+                        <span class="required">*</span>Name:
+                        <select name="doctorName" id="prescribeDoctor">
+                            <option value="">--SELECT--</option>
+                        </select>
+                    </label>
                 </fieldset>
 
                 <br>
 
                 <fieldset>
+                    <legend>Patient Information</legend>
                     <label>
-                        <label><span class="required">*</span>Specialty
-                            <input type="text" name="specialty" id="updateSpecialty">
-                        </label>
+                        <span class="required">*</span>Patient:
+                        <select name="patientName" id="prescribePatient">
+                            <option value="">--SELECT--</option>
+                        </select>
+                    </label>
                 </fieldset>
 
                 <br>
 
-                <input class="btn" type="submit" id="updateSubmit" value="Update">
+                <fieldset>
+                    <legend>Medication Information</legend>
+                    <label>
+                        <span class="required">*</span>Medication:
+                        <select name="medicationName" id="prescribeMedication">
+                            <option value="">--SELECT--</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span class="required">*</span>Quantity of Tablets:
+                        <input id="quantityOfTablets" type="number" min="1" required>
+                    </label>
+                </fieldset>
+
+                <br>
+
+                <input class="btn" id="addPrescriptionSubmit" type="submit" value="Write Prescription">
+
             </fieldset>
         </form>
     </div>
@@ -162,7 +134,7 @@
         <a href="https://github.com/pantbruin">Jesse Pantoja</a>
     </div>
 
-    <script src="./scripts/search_doctors.js"></script>
+    <script src="./scripts/Prescriptions.js"></script>
 </body>
 
 </html>
