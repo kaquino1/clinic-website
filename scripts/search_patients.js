@@ -1,8 +1,8 @@
-const baseURL = "https://clinic-serverside.herokuapp.com/";
+const baseURL = "http://flip3.engr.oregonstate.edu:8666/";
 
 const table = document.getElementById("patientTable");
 
-// UPDATE PATIENT
+// UPDATE PATIENT SUBMIT BUTTON LISTENER
 document.getElementById("updateSubmit").addEventListener("click", (event) => {
     var data = { patientRecordNumber: null, firstName: "", lastName: "", dob: null, gender: null, diagnosis: "", company: "", planLevel: "" };
     data.patientRecordNumber = parseInt(document.getElementById("updatepatientRecordNumber").value);
@@ -17,11 +17,12 @@ document.getElementById("updateSubmit").addEventListener("click", (event) => {
     }
     data.company = document.getElementById("updateCompany").value;
     data.planLevel = document.getElementById("updatePlanLevel").value;
-    sendData(data)
+    updatePatient(data)
     event.preventDefault();
 });
 
-const sendData = (data) => {
+// UPDATE PATIENT REQUEST
+const updatePatient = (data) => {
     var req = new XMLHttpRequest();
     req.open("PUT", baseURL + "patients", true);
     req.setRequestHeader("Content-Type", "application/json");
@@ -38,7 +39,7 @@ const sendData = (data) => {
     req.send(JSON.stringify(data));
 };
 
-// DELETE PATIENT
+// DELETE PATIENT REQUEST
 const deleteRow = (toDelete) => {
     var req = new XMLHttpRequest();
     req.open("DELETE", baseURL + "patients", true);
@@ -54,6 +55,7 @@ const deleteRow = (toDelete) => {
     req.send(JSON.stringify(toDelete));
 };
 
+// DISPLAY PATIENTS DATA
 const getData = () => {
     var req = new XMLHttpRequest();
     req.open("GET", baseURL + "patients", false);
@@ -130,7 +132,7 @@ const makeRow = (rowData) => {
     document.getElementById("tableBody").appendChild(tRow);
 };
 
-
+// UPDATE & DELETE PATIENT ROW BUTTONS LISTENER
 table.addEventListener("click", (event) => {
     if (event.target && event.target.matches("button.updateBtns")) {
         var row = event.target.closest("tr");
@@ -174,6 +176,7 @@ table.addEventListener("click", (event) => {
     event.preventDefault();
 });
 
+// GET PATIENT DATA FROM ROW
 const collectRowData = (row) => {
     var cells = row.cells;
     var oldData = [];
@@ -183,22 +186,24 @@ const collectRowData = (row) => {
     return (oldData);
 };
 
-// GET INSURANCES
+// INSURANCE COMPANIES REQUEST
 const getInsuranceCompanies = () => {
     var req = new XMLHttpRequest();
     req.open("GET", baseURL + "insurance_companies", false);
     req.send(null);
     var companies = JSON.parse(req.responseText);
-    // POPULATE SEARCH DROP DOWN
+
+    // POPULATE SEARCH DROPDOWN
     var searchSelect = document.getElementById("searchCompany");
-    populateDropDown(companies, searchSelect);
-    // POPULATE UPDATE DROP DOWN
+    populateCompanyDropDown(companies, searchSelect);
+
+    // POPULATE UPDATE DROPDOWN
     var updateSelect = document.getElementById("updateCompany");
-    populateDropDown(companies, updateSelect);
+    populateCompanyDropDown(companies, updateSelect);
 
 };
 
-const populateDropDown = (companies, companySelect) => {
+const populateCompanyDropDown = (companies, companySelect) => {
     for (var i of companies.results) {
         var option = document.createElement("option");
         var optionText = document.createTextNode(i.company);
@@ -208,32 +213,49 @@ const populateDropDown = (companies, companySelect) => {
     }
 };
 
+// POPULATE PLAN LEVEL DROPDOWN WHEN COMPANY SELECTION CHANGES
 document.getElementById("updateCompany").onchange = (event) => {
     var inputText = event.target.value;
-    var planLevelSelect = document.getElementById("updatePlanLevel");
-    while (planLevelSelect.firstChild) {
-        planLevelSelect.removeChild(planLevelSelect.firstChild);
-    }
+    removePlanLevels();
+
     if (inputText != "NONE") {
         var data = { company: "" };
         data.company = inputText;
         getInsurancePlanLevels(data);
     }
     else {
-        var option = document.createElement("option");
-        var optionText = document.createTextNode("NONE");
-        option.value = "NONE";
-        option.appendChild(optionText);
-        planLevelSelect.appendChild(option);
+        // PLAN LEVEL IS NONE
+        setPlanLevels()
     }
 };
 
+// REMOVE OLD PLAN LEVEL OPTIONS WHEN COMPANY SELECTION CHANGES
+const removePlanLevels = () => {
+    var planLevelSelect = document.getElementById("updatePlanLevel");
+    while (planLevelSelect.firstChild) {
+        planLevelSelect.removeChild(planLevelSelect.firstChild);
+    };
+};
+
+// RESET PLAN LEVELS
+const setPlanLevels = () => {
+    var planLevelSelect = document.getElementById("udpatePlanLevel");
+    var option = document.createElement("option");
+    var optionText = document.createTextNode("NONE");
+    option.value = "NONE";
+    option.appendChild(optionText);
+    planLevelSelect.appendChild(option);
+}
+
+// PLAN LEVELS REQUEST BASED ON COMPANY SELECTION
 const getInsurancePlanLevels = (data) => {
     var req = new XMLHttpRequest();
     req.open("POST", baseURL + "insurance_plans", false);
     req.setRequestHeader("Content-Type", "application/json");
     req.send(JSON.stringify(data));
     var planLevels = JSON.parse(req.responseText);
+
+    // POPULATE PLAN LEVEL DROPDOWN
     var planLevelSelect = document.getElementById("updatePlanLevel");
     for (var i of planLevels.results) {
         var option = document.createElement("option");
@@ -244,7 +266,7 @@ const getInsurancePlanLevels = (data) => {
     }
 };
 
-// SEARCH PATIENTS
+// SEARCH PATIENTS BUTTON LISTENER
 document.getElementById("searchSubmit").addEventListener("click", (event) => {
     var data = { firstName: null, lastName: null, dob: null, gender: null, diagnosis: null, company: null, planLevel: null };
     data.firstName = document.getElementById("searchFName").value.toUpperCase();
@@ -274,6 +296,8 @@ document.getElementById("searchSubmit").addEventListener("click", (event) => {
         event.preventDefault();
         return
     }
+
+    // SEARCH PATIENTS REQUEST
     var req = new XMLHttpRequest();
     req.open("POST", baseURL + "patient_search", true);
     req.setRequestHeader("Content-Type", "application/json");
@@ -311,6 +335,7 @@ const resetSearchForm = () => {
     document.getElementById("searchPlanLevel").disabled = false;
 };
 
+// SHOW ALL BUTTON LISTENER
 document.getElementById("showAll").addEventListener("click", (event) => {
     document.getElementById("noResults").classList.add("hide");
     getData();
@@ -318,6 +343,7 @@ document.getElementById("showAll").addEventListener("click", (event) => {
     event.preventDefault();
 });
 
+// DIAGNOSIS INPUT INACTIVE IF NONE
 const inactivateDiagnosis = () => {
     var checkBox = document.getElementById("noDiagnosis");
     var textfield = document.getElementById("searchDiagnosis");
@@ -329,6 +355,7 @@ const inactivateDiagnosis = () => {
     }
 };
 
+// INSURANCE COMPANY AND PLAN LEVEL DROPDOWN INACTIVE IF NONE
 const inactivateInsurance = () => {
     var checkBox = document.getElementById("noInsurance");
     var companySelect = document.getElementById("searchCompany");

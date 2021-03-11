@@ -1,6 +1,6 @@
-const baseURL = "https://clinic-serverside.herokuapp.com/";
+const baseURL = "http://flip3.engr.oregonstate.edu:8666/";
 
-// ADD INSURANCE PLAN
+// ADD INSURANCE PLAN BUTTON LISTENER
 document.getElementById("addSubmit").addEventListener("click", (event) => {
     var data = { company: "", planLevel: "" };
     data.company = document.getElementById("addCompany").value.toUpperCase();
@@ -15,6 +15,9 @@ document.getElementById("addSubmit").addEventListener("click", (event) => {
 });
 
 const formValidation = (data) => {
+    if (data.company.trim().length === 0) {
+        return false
+    }
     for (var i in data) {
         if (data[i] == "") {
             return false
@@ -23,6 +26,7 @@ const formValidation = (data) => {
     return true;
 };
 
+// CHECK IF INSURANCE PLAN EXISTS
 const checkDuplicates = (data) => {
     var req = new XMLHttpRequest();
     req.open("POST", baseURL + "check_insurances", true);
@@ -47,6 +51,7 @@ const checkDuplicates = (data) => {
     req.send(JSON.stringify(data));
 };
 
+// ADD INSURANCE PLAN REQUEST
 const addInsurance = (data) => {
     var req = new XMLHttpRequest();
     req.open("POST", baseURL + "insurances", true);

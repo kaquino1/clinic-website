@@ -1,8 +1,8 @@
-const baseURL = "https://clinic-serverside.herokuapp.com/";
+const baseURL = "http://flip3.engr.oregonstate.edu:8666/";
 
 const table = document.getElementById("insuranceTable");
 
-// DELETE INSURANCE PLAN    
+// DELETE INSURANCE PLAN BUTTON LISTENER
 table.addEventListener("click", (event) => {
     if (event.target && event.target.matches("button.deleteBtns")) {
         var row = event.target.closest("tr");
@@ -15,6 +15,7 @@ table.addEventListener("click", (event) => {
     event.preventDefault();
 });
 
+// DELETE INSURANCE PLAN REQUEST
 const deleteRow = (toDelete) => {
     var req = new XMLHttpRequest();
     req.open("DELETE", baseURL + "insurances", true);
@@ -30,6 +31,7 @@ const deleteRow = (toDelete) => {
     req.send(JSON.stringify(toDelete));
 };
 
+// DISPLAY INSURANCES DATA
 const getData = () => {
     var req = new XMLHttpRequest();
     req.open("GET", baseURL + "insurances", false);
@@ -78,7 +80,7 @@ const makeRow = (rowData) => {
     document.getElementById("tableBody").appendChild(tRow);
 };
 
-// SEARCH INSURANCE
+// SEARCH INSURANCES BUTTON LISTENER
 document.getElementById("searchSubmit").addEventListener("click", (event) => {
     var data = { company: null, planLevel: null };
     if (document.getElementById("searchComapny").value != "") {
@@ -92,6 +94,7 @@ document.getElementById("searchSubmit").addEventListener("click", (event) => {
         event.preventDefault();
         return
     }
+    // SEARCH INSURANCES REQUEST
     var req = new XMLHttpRequest();
     req.open("POST", baseURL + "insurance_search", true);
     req.setRequestHeader("Content-Type", "application/json");
@@ -116,6 +119,7 @@ const resetSearchForm = () => {
     document.getElementById("searchPlanLevel").value = "";
 };
 
+// SHOW ALL BUTTON LISTENER
 document.getElementById("showAll").addEventListener("click", (event) => {
     document.getElementById("noResults").classList.add("hide");
     getData();

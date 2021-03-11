@@ -1,13 +1,16 @@
-const baseURL = "https://clinic-serverside.herokuapp.com/";
+const baseURL = "http://flip3.engr.oregonstate.edu:8666/";
 
+// Makes the table on the front end via DOM manipulation
 function makeTable(rowsArray){
     var columns = ['Prescription ID', 'Employee ID', 'Doctor FN', 'Doctor LN', 'Medication ID', 'Medication Name', 'Quantity Prescribed', 'Patient Record #', 'Patient FN', 'Patient LN']
 
+    // If server returns an empty array, hide table and display no results.
     if (rowsArray.length == 0) {
         document.getElementById('prescriptionsContainer').classList.add('hide');
         document.getElementById('noResults').classList.remove('hide');
     }
     else{
+    // Delete table, make table header row, make table body rows, display table, and hide no results text.
     deleteTable()
     makeHeaderRow(columns);
     makeTableBodyRows(rowsArray)
@@ -16,6 +19,7 @@ function makeTable(rowsArray){
     }
 }
 
+// Makes the table header rows of the front end table.
 function makeHeaderRow(columns){
     let table = document.getElementById('prescriptionsTable')
     let tableHead = document.createElement('thead')
@@ -31,6 +35,7 @@ function makeHeaderRow(columns){
     table.appendChild(tableHead)
 }
 
+// Makes table body rows of the front end table.
 function makeTableBodyRows(rowsArray){
     let table = document.getElementById('prescriptionsTable')
     let tableBody = document.createElement('tbody')
@@ -51,6 +56,7 @@ function makeTableBodyRows(rowsArray){
     table.appendChild(tableBody)
 }
 
+// Deletes the existing table in the front end.
 function deleteTable(){
     let table = document.getElementById('prescriptionsTable')
     while(table.lastElementChild){
@@ -68,22 +74,21 @@ document.getElementById('searchPrescriptionSubmit').addEventListener('click', fu
     payload.patientRecordNumber = document.getElementById('searchPatient').value
     payload.medID = document.getElementById('searchMedication').value
 
-    if ((payload.employeeID == "") && (payload.patientRecordNumber =="") && (payload.medID == "")){
+    // If user does not select any search field, alert them that they need to select at least one option from drop down menu
+    if ((payload.employeeID == "") && (payload.patientRecordNumber == "") && (payload.medID == "")){
         alert('You must select at least one search option from the dropdown menus above.')
         event.preventDefault()
         return
     }
 
+    // Make search POST request to server and Make Table with data received
     req.open('POST', baseURL + 'search_prescription', true);
     req.setRequestHeader('Content-Type', 'application/json');
     req.addEventListener('load', function(){
         if(req.status >= 200 && req.status < 400){
-            var response = JSON.parse(req.responseText);
-            var databaseRowsArray = response.results;
-            document.getElementById('searchDoctor').value = "";
-            document.getElementById('searchPatient').value = "";
-            document.getElementById('searchMedication').value = "";
-            
+            var response;
+            var response = JSON.parse(req.responseText)
+            var databaseRowsArray = response.results
             makeTable(databaseRowsArray)
         } else{
             console.log("Error in network request: " + req.statusText);
@@ -92,6 +97,7 @@ document.getElementById('searchPrescriptionSubmit').addEventListener('click', fu
     event.preventDefault();
     });
 
+// Event listener for show all prescriptions button. Shows all entries of prescriptions in DB.
 document.getElementById('showAll').addEventListener('click', function(event){
     var req = new XMLHttpRequest();
     req.open('GET', baseURL + 'show_all_prescriptions', true)
@@ -109,6 +115,7 @@ document.getElementById('showAll').addEventListener('click', function(event){
     event.preventDefault();
 })
 
+// Server request for doctor information to populate dropdown menu
 const getDoctorInfo = () => {
     var req = new XMLHttpRequest();
     var searchSelect = document.getElementById("searchDoctor");
@@ -125,6 +132,7 @@ const getDoctorInfo = () => {
     req.send(null);
 };
 
+// Server request for patient information to populate dropdown menu
 const getPatientInfo = () => {
 
     var req = new XMLHttpRequest();
@@ -142,6 +150,7 @@ const getPatientInfo = () => {
     req.send(null);
 };
 
+// Server request for medication information to populate dropdown menu
 const getMedicationInfo = () => {
 
     var req = new XMLHttpRequest();
@@ -159,8 +168,10 @@ const getMedicationInfo = () => {
     req.send(null);
 };
 
+// Called within server requests for dropdown menu information to populate the dropdown menus on the front end.
 const populateDropDown = (objectWithRows, dropDownToPopulate) => {
 
+    // Populate doctors dropdown
     if (Object.is(document.getElementById("searchDoctor"), dropDownToPopulate)){
         for (var i of objectWithRows.results) {
             full_string = `EID ${i.employeeID.toString()} -- ${i.lastName}, ${i.firstName}`
@@ -170,6 +181,7 @@ const populateDropDown = (objectWithRows, dropDownToPopulate) => {
             dropDownToPopulate.appendChild(option);
         }
     }
+    // Populate patients dropdown.
     else if (Object.is(document.getElementById("searchPatient"), dropDownToPopulate)) {
         for (var i of objectWithRows.results) {
             full_string = `PRN ${i.patientRecordNumber.toString()} -- ${i.lastName}, ${i.firstName}`
@@ -180,6 +192,7 @@ const populateDropDown = (objectWithRows, dropDownToPopulate) => {
         }
     }
 
+    // Populate medications dropdown
     else{
         for (var i of objectWithRows.results) {
             full_string = `MID ${i.medID.toString()} -- ${i.medName}`
@@ -193,7 +206,7 @@ const populateDropDown = (objectWithRows, dropDownToPopulate) => {
 };
 
 
-// event listener upon website load
+// event listener upon website load to populate dropdown menus.
 window.addEventListener('load', function(event){
     getDoctorInfo()
     getPatientInfo()

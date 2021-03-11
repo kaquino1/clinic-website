@@ -1,13 +1,16 @@
-const baseURL = "https://clinic-serverside.herokuapp.com/";
+const baseURL = "http://flip3.engr.oregonstate.edu:8666/";
 
+// Make table in front end using DOM manipulation.
 function makeTable(rowsArray) {
     var columns = ['Doctor Employee ID', 'First Name', 'Last Name', 'Specialty', 'Update', 'Delete']
 
+    // If length of array of data from servers is 0, no data to display. Hide table and show noResults text.
     if (rowsArray.length == 0) {
         document.getElementById('doctorsContainer').classList.add('hide');
         document.getElementById('noResults').classList.remove('hide');
     }
     else {
+        // Delete existing table, make header rows, make rest of table, hide noResults and show the table in DOM.
         deleteTable()
         makeHeaderRow(columns);
         makeTableBodyRows(rowsArray)
@@ -16,6 +19,7 @@ function makeTable(rowsArray) {
     }
 }
 
+// Makes the header rows of the table
 function makeHeaderRow(columns) {
     let table = document.getElementById('all-doctors-table')
     let tableHead = document.createElement('thead')
@@ -31,6 +35,7 @@ function makeHeaderRow(columns) {
     table.appendChild(tableHead)
 }
 
+// Makes table body rows and table data cells with server data 
 function makeTableBodyRows(rowsArray) {
     let table = document.getElementById('all-doctors-table')
     let tableBody = document.createElement('tbody')
@@ -70,6 +75,7 @@ function makeTableBodyRows(rowsArray) {
     table.appendChild(tableBody)
 }
 
+// Deletes existing table in front end.
 function deleteTable() {
     let table = document.getElementById('all-doctors-table')
     while (table.lastElementChild) {
@@ -78,7 +84,7 @@ function deleteTable() {
     return;
 }
 
-// Search doctor, filtered search.
+// Search doctors based on user inputted filtered search.
 document.getElementById('searchDoctor').addEventListener('click', function (event) {
     var req = new XMLHttpRequest();
     var payload = { firstName: null, lastName: null, specialty: null }
@@ -87,6 +93,7 @@ document.getElementById('searchDoctor').addEventListener('click', function (even
     payload.lastName = document.getElementById('lastName').value.toUpperCase()
     payload.specialty = document.getElementById('specialty').value.toUpperCase()
 
+    // If search fields are all empty strings, alert user than at least one search field is required. 
     if ((payload.firstName == "") && (payload.lastName == "") && (payload.specialty == "")) {
         alert('You must include at least one search field.')
         event.preventDefault()
@@ -111,6 +118,7 @@ document.getElementById('searchDoctor').addEventListener('click', function (even
     event.preventDefault();
 });
 
+// Event listener for show all button. Makes request to the server for SELECT * FROM doctors 
 document.getElementById('showAll').addEventListener('click', function (event) {
     var req = new XMLHttpRequest();
     req.open('GET', baseURL + 'allDoctors', true)
@@ -127,12 +135,14 @@ document.getElementById('showAll').addEventListener('click', function (event) {
     event.preventDefault();
 })
 
+// Event listener on table for delete a row button or update a row
 document.getElementById('all-doctors-table').addEventListener('click', function (event) {
     let target = event.target;
 
     if (target.name === 'delete') {
         let parentNode = target.parentNode.parentNode
         let idOfRow = parentNode.firstElementChild.textContent
+        // Confirm with user that deleting specified row will delete prescriptions or doctor-patient assignments with that doctor as well
         if (confirm(`WARNING: Deleting doctor with employee ID ${idOfRow} will delete any prescriptions or doctor-patient assignments also associated with the employee. Are you sure you want to delete?`)) {
             deleteRow(idOfRow)
             setTimeout(function () { alert(`Doctor with employee ID ${idOfRow} successfully deleted.`); }, 500)
@@ -142,10 +152,14 @@ document.getElementById('all-doctors-table').addEventListener('click', function 
         }
 
     }
-
+    
+    // If user selected an update button
     if (target.name === 'update') {
+        // Target the row of that update button
         var row = event.target.closest('tr');
+        // Collect the data of that row
         var oldData = collectRowData(row);
+        // Display and insert the data of the row into the update form below the table
         document.getElementById('updateEmployeeID').value = parseInt(oldData[0]);
         document.getElementById('updateFirstName').value = oldData[1];
         document.getElementById('updateLastName').value = oldData[2];
@@ -156,6 +170,7 @@ document.getElementById('all-doctors-table').addEventListener('click', function 
     }
 })
 
+// Event listener on update form submit button that appears when a user clicks on an update button
 document.getElementById('updateSubmit').addEventListener('click', (event) => {
     var payload = { employeeID: null, firstName: '', lastName: '', specialty: '' };
     payload.employeeID = document.getElementById('updateEmployeeID').value;
@@ -163,7 +178,8 @@ document.getElementById('updateSubmit').addEventListener('click', (event) => {
     payload.lastName = document.getElementById('updateLastName').value.toUpperCase();
     payload.specialty = document.getElementById('updateSpecialty').value.toUpperCase();
 
-    if ((payload.firstName == "") || (payload.lastName == "") || (payload.specialty == "")) {
+    // If the user inputted empty fields including all white space in the update form, alert the user that all fields are needed 
+    if ((payload.firstName.trim().length === 0 || payload.lastName.trim().length === 0 || payload.specialty.trim().length === 0)) {
         alert('Please complete all fields in order to update.')
         event.preventDefault()
         return
@@ -175,7 +191,6 @@ document.getElementById('updateSubmit').addEventListener('click', (event) => {
     req.addEventListener('load', () => {
         if (req.status >= 200 && req.status < 400) {
             document.getElementById('updateDoctor').classList.add('hide');
-            // document.getElementById("noResults").classList.remove("hide");
             var response = JSON.parse(req.responseText)
             var databaseRowsArray = response.results
             makeTable(databaseRowsArray)
@@ -189,7 +204,7 @@ document.getElementById('updateSubmit').addEventListener('click', (event) => {
     event.preventDefault();
 });
 
-
+// Asynchronous request to delete a row from the DB, based on the id of the row that the user clicked the delete buton on
 function deleteRow(idOfRow) {
     var req = new XMLHttpRequest();
     var payload = { employeeID: idOfRow }
@@ -207,7 +222,7 @@ function deleteRow(idOfRow) {
     req.send(JSON.stringify(payload));
 }
 
-
+// Collects the row data of the row where the user clicked an update button on. 
 const collectRowData = (row) => {
     var cells = row.cells;
     var oldData = [];

@@ -1,8 +1,8 @@
-const baseURL = "https://clinic-serverside.herokuapp.com/";
+const baseURL = "http://flip3.engr.oregonstate.edu:8666/";
 
 const table = document.getElementById("medicationTable");
 
-// DELETE MEDICATION  
+// DELETE MEDICATION BUTTON LISTENER
 table.addEventListener("click", (event) => {
     if (event.target && event.target.matches("button.deleteBtns")) {
         var row = event.target.closest("tr");
@@ -22,6 +22,7 @@ table.addEventListener("click", (event) => {
     event.preventDefault();
 });
 
+// GET MEDICATION DATA FROM ROW
 const collectRowData = (row) => {
     var cells = row.cells;
     var oldData = [];
@@ -31,12 +32,14 @@ const collectRowData = (row) => {
     return (oldData);
 };
 
+// ADD 50 TO MEDICATION QUANTITY
 const restockMedication = (oldData) => {
     var data = { medID: null, medName: null, quantityAvailable: null }
     data.medID = oldData[0];
     data.medName = oldData[1];
     data.quantityAvailable = 50 + parseInt(oldData[2]);
 
+    // MEDICATION UPDATE REQUEST
     var req = new XMLHttpRequest();
     req.open("PUT", baseURL + "medications", true);
     req.setRequestHeader("Content-Type", "application/json");
@@ -51,6 +54,7 @@ const restockMedication = (oldData) => {
     req.send(JSON.stringify(data));
 };
 
+// DELETE MEDICATION REQUEST
 const deleteRow = (toDelete) => {
     var req = new XMLHttpRequest();
     req.open("DELETE", baseURL + "medications", true);
@@ -66,6 +70,7 @@ const deleteRow = (toDelete) => {
     req.send(JSON.stringify(toDelete));
 };
 
+// DISPLAY MEDICATIONS DATA
 const getData = () => {
     var req = new XMLHttpRequest();
     req.open("GET", baseURL + "medications", false);
@@ -122,7 +127,7 @@ const makeRow = (rowData) => {
     document.getElementById("tableBody").appendChild(tRow);
 };
 
-// SEARCH MEDICATIONS
+// SEARCH MEDICATIONS BUTTON LISTENER
 document.getElementById("searchSubmit").addEventListener("click", (event) => {
     var data = { medName: null, quantityAvailable: null, comparator: null };
     if (document.getElementById("searchMedName").value != "") {
@@ -139,6 +144,8 @@ document.getElementById("searchSubmit").addEventListener("click", (event) => {
         event.preventDefault();
         return
     }
+
+    // SEARCH MEDICATIONS REQUEST
     var req = new XMLHttpRequest();
     req.open("POST", baseURL + "medication_search", true);
     req.setRequestHeader("Content-Type", "application/json");
@@ -164,6 +171,7 @@ const resetSearchForm = () => {
     document.getElementById("compare").value = "";
 };
 
+// SHOW ALL BUTTON LISTENER
 document.getElementById("showAll").addEventListener("click", (event) => {
     document.getElementById("noResults").classList.add("hide");
     getData();
