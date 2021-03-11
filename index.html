@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Clinic</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+
+</head>
+
+<body>
+    <div class="header">
+        <span><i class="fas fa-h-square"></i> HEALTH CLINIC</span>
+    </div>
+    <div class="topnav">
+        <a href=index.html id="home" class="activePage"><i class="fas fa-home"></i></a>
+        <div class="dropdown">
+            <button class="dropbtn">
+                <i class="fas fa-pills"></i>
+                Medications
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href=Medications.html>Add a Medication</a>
+                <a href=allMedications.html>Search Medications</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">
+                <i class="fas fa-user-injured"></i>
+                Patients
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href=Patients.html>Add a Patient</a>
+                <a href=allPatients.html>Search Patients</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">
+                <i class="fas fa-stethoscope"></i>
+                Doctors
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="Doctors.html">Add a Doctor</a>
+                <a href=allDoctors.html>Search Doctors</a>
+                <a href="doctor_patient_assignments.html">Doctor-Patient Assignments</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">
+                <i class="fas fa-notes-medical"></i>
+                Insurances
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href=Insurances.html>Add an Insurance Plan</a>
+                <a href=allInsurances.html>Search Insurance Plans</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">
+                <i class="fas fa-prescription-bottle"></i>
+                Prescriptions
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="write_prescription.html">Write a Prescription</a>
+                <a href=prescription_search.html>Search a Prescription</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="intro">
+        <span>Welcome</span>
+        <dl>
+            <dt><a href="Medications.html">Add a Medication</a></dt>
+            <dd>Add a new medication to the inventory of available medications.</dd>
+
+            <dt><a href="allMedications.html">Search a Medication</a></dt>
+            <dd>Search medications available and its quantity currently in stock.</dd>
+
+            <dt><a href="Patients.html">Add a Patient</a></dt>
+            <dd>Add a new patient to the clinic's database.</dd>
+
+            <dt><a href="allPatients.html">Search Patients</a></dt>
+            <dd>Search for an existing patient in the clinic's database.</dd>
+
+            <dt><a href="Doctors.html">Add a Doctor Employee</a></dt>
+            <dd>Add a new doctor as an employee of the clinic.</dd>
+
+            <dt><a href="allDoctors.html">Search Doctors</a></dt>
+            <dd>Search for currently employed doctors. </dd>
+
+            <dt><a href="doctor_patient_assignments.html">Assign a Patient to Doctor</a></dt>
+            <dd>Assign a patient to a doctor or search for doctor-patient assignments.</dd>
+
+            <dt><a href="Insurances.html">Add an Insurance</a></dt>
+            <dd>Add a new accepted insurance plan.</dd>
+
+            <dt><a href="allInsurances.html">Search Insurances</a></dt>
+            <dd>Search all currently accepted insurances.</dd>
+
+            <dt><a href="write_prescription.html">Write a Prescription</a></dt>
+            <dd>DOCTOR USE ONLY: Prescribe a new prescription to a patient.</dd>
+
+            <dt><a href="prescription_search.html">Search for a Prescription</a></dt>
+            <dd>Search for all current prescriptions for patients.</dd>
+        </dl>
+    </div>
+
+    <div class="bottomnav">
+        Collaborators:
+        <a href="https://github.com/kaquino1">Katrina Aquino</a> &
+        <a href="https://github.com/pantbruin">Jesse Pantoja</a>
+    </div>
+
+</body>
+
+</html>

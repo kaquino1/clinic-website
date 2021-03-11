@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Doctors</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+
+</head>
+
+<body>
+    <div class="header">
+        <span>SEARCH DOCTORS</span>
+    </div>
+    <div class="topnav">
+        <a href=index.html><i class="fas fa-home"></i></a>
+        <div class="dropdown">
+            <button class="dropbtn">
+                <i class="fas fa-pills"></i>
+                Medications
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href=Medications.html>Add a Medication</a>
+                <a href=allMedications.html>Search Medications</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">
+                <i class="fas fa-user-injured"></i>
+                Patients
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href=Patients.html>Add a Patient</a>
+                <a href=allPatients.html>Search Patients</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn activePage">
+                <i class="fas fa-stethoscope"></i>
+                Doctors
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="Doctors.html">Add a Doctor</a>
+                <a href=allDoctors.html class="activePage">Search Doctors</a>
+                <a href="doctor_patient_assignments.html">Doctor-Patient Assignments</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">
+                <i class="fas fa-notes-medical"></i>
+                Insurances
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href=Insurances.html>Add an Insurance Plan</a>
+                <a href=allInsurances.html>Search Insurance Plans</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">
+                <i class="fas fa-prescription-bottle"></i>
+                Prescriptions
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="write_prescription.html">Write a Prescription</a>
+                <a href=prescription_search.html>Search a Prescription</a>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <div>
+        <form method="post">
+            <fieldset class="outer">
+
+                <legend>Doctor Search</legend>
+                <fieldset>
+                    <label>First Name:
+                        <input id="firstName" type="text" name="firstName">
+                    </label>
+                    <label>Last Name:
+                        <input id="lastName" type="text" name="lastName">
+                    </label>
+                </fieldset>
+
+                <br>
+                <fieldset>
+                    <label>Specialty:
+                        <input id="specialty" type="text" name="specialty">
+                    </label>
+                </fieldset>
+
+
+                <br>
+
+                <input class="btn" id="searchDoctor" type="submit" value="Search">
+                <button class="btn" id="showAll">Show All</button>
+            </fieldset>
+        </form>
+    </div>
+
+    <br>
+    <div class="hide" id="noResults">
+        <span>
+            <h2>No Results</h2>
+        </span>
+    </div>
+
+    <br>
+    <div id="doctorsContainer">
+        <table id="all-doctors-table">
+
+        </table>
+    </div>
+    <br>
+    <br>
+
+    <div id="updateDoctor" class="hide">
+        <form method="PUT">
+            <fieldset>
+                <legend>Update Doctor</legend>
+                <fieldset>
+                    <input type="hidden" name="employeeID" id="updateEmployeeID">
+                    <label>
+                        <label><span class="required">*</span>First Name:
+                            <input type="text" name="firstName" id="updateFirstName">
+                        </label>
+                        <label>
+                            <label><span class="required">*</span>Last Name:
+                                <input type="text" name="lastName" id="updateLastName">
+                            </label>
+                </fieldset>
+
+                <br>
+
+                <fieldset>
+                    <label>
+                        <label><span class="required">*</span>Specialty
+                            <input type="text" name="specialty" id="updateSpecialty">
+                        </label>
+                </fieldset>
+
+                <br>
+
+                <input class="btn" type="submit" id="updateSubmit" value="Update">
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="bottomnav">
+        Collaborators:
+        <a href="https://github.com/kaquino1">Katrina Aquino</a> &
+        <a href="https://github.com/pantbruin">Jesse Pantoja</a>
+    </div>
+
+    <script src="./scripts/search_doctors.js"></script>
+</body>
+
+</html>
