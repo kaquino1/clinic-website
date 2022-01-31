@@ -1,6 +1,8 @@
 # Clinic Admin Website
 
-[https://kaquino1.github.io/clinic-website](https://kaquino1.github.io/clinic-website)
+Website Link: [https://kaquino1.github.io/clinic-website](https://kaquino1.github.io/clinic-website)
+
+Server Repo: [https://github.com/kaquino1/clinic-server](https://github.com/kaquino1/clinic-server)
 
 A multi-page website created with DOM manipulation
 
